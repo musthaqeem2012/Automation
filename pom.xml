@@ -22,13 +22,31 @@
   </modules>
 
   <distributionManagement>
-    <site>
+    
+  </distributionManagement>
+       
+  <distributionManagement>
+   <site>
       <id>site-server</id>
       <name>Test Project Site</name>
       <url>file:///tmp/maven-project-site</url>
     </site>
+    <repository>
+      <id>nexus</id>
+      <name>Nexus Releases</name>
+      <url>http://18.219.67.3:8081/repository/SAMPLE-RELEASE/</url>
+    </repository>
+    <snapshotRepository>
+      <id>nexus</id>
+      <name>Nexus Snapshot</name>
+      <url>http://18.219.67.3:8081/repository/SAMPLE-SNAP/</url>
+    </snapshotRepository>
+    <site>
+      <id>nexus</id>
+      <name>Nexus Sites</name>
+      <url>dav:http://localhost:8081/nexus/content/sites/site/</url>
+    </site>
   </distributionManagement>
-
   <build>
     <plugins>
       <plugin>
