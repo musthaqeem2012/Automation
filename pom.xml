@@ -59,7 +59,7 @@
              
              <plugin>
    <artifactId>maven-deploy-plugin</artifactId>
- <version>3.0.5</version>
+ <version>3.5.4</version>
    <executions>
       <execution>
          <id>default-deploy</id>
