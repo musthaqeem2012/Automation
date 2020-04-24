@@ -56,6 +56,20 @@
           <autoVersionSubmodules>true</autoVersionSubmodules>
         </configuration>
       </plugin>
+             
+             <plugin>
+   <artifactId>maven-deploy-plugin</artifactId>
+ <version>3.0.5</version>
+   <executions>
+      <execution>
+         <id>default-deploy</id>
+         <phase>deploy</phase>
+         <goals>
+            <goal>deploy</goal>
+         </goals>
+      </execution>
+   </executions>
+</plugin>
 
       <plugin>
         <artifactId>maven-site-plugin</artifactId>
@@ -94,6 +108,7 @@
         </configuration>
       </plugin>
     </plugins>
+           
 
     <pluginManagement>
       <plugins>
