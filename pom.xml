@@ -57,7 +57,7 @@
         </configuration>
       </plugin>
              
-             <plugin>
+            <!-- <plugin>
    <artifactId>maven-deploy-plugin</artifactId>
  <version>3.5.4</version>
    <executions>
@@ -69,7 +69,7 @@
          </goals>
       </execution>
    </executions>
-</plugin>
+</plugin>-->
 
       <plugin>
         <artifactId>maven-site-plugin</artifactId>
