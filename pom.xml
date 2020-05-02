@@ -8,6 +8,15 @@
   <properties>
     <maven.compiler.source>7</maven.compiler.source>
     <maven.compiler.target>7</maven.compiler.target>
+	  
+<sonar.java.coveragePlugin>jacoco</sonar.java.coveragePlugin>
+                <sonar.surefire.reportsPath>${project.build.directory}/surefire-reports</sonar.surefire.reportsPath>
+                <sonar.coverage.jacoco.xmlReportPaths>${project.reporting.outputDirectory}/jacoco-ut/jacoco.xml</sonar.coverage.jacoco.xmlReportPaths>
+                <sonar.projectVersion>${project.version}</sonar.projectVersion>
+                <!-- Enable language to disable other language analysis -->
+                <sonar.language>java</sonar.language>
+                <sonar.exclusions>src/main/resources/**</sonar.exclusions>
+	  
   </properties>
 
   <dependencies>
@@ -21,25 +30,57 @@
  <build>
   <plugins>
     <plugin>
-      <groupId>org.jacoco</groupId>
-      <artifactId>jacoco-maven-plugin</artifactId>
-      <version>0.7.8</version>
-      <executions>
-        <execution>
-          <id>pre-unit-test</id>
-          <goals>
-            <goal>prepare-agent</goal>
-          </goals>
-        </execution>
-        <execution>
-          <id>post-unit-test</id>
-          <phase>test</phase>
-          <goals>
-            <goal>report</goal>
-          </goals>
-        </execution>
-      </executions>
-    </plugin>
+                                <groupId>org.jacoco</groupId>
+                                <artifactId>jacoco-maven-plugin</artifactId>
+                                <version>0.8.2</version>
+                                <configuration>
+                                        <dumpOnExit>true</dumpOnExit>
+                                        <includes>
+                                                <include>org.onap.*</include>
+                                        </includes>
+                                        <propertyName>surefireArgLine</propertyName>
+                                </configuration>
+                                <executions>
+                                        <execution>
+                                                <id>pre-unit-test</id>
+                                                <goals>
+                                                        <goal>prepare-agent</goal>
+                                                </goals>
+                                                <configuration>
+                                                        <destFile>${project.build.directory}/coverage-reports/jacoco.exec</destFile>
+                                                        <!-- <append>true</append> -->
+                                                </configuration>
+                                        </execution>
+                                        <execution>
+                                                <id>pre-integration-test</id>
+                                                <phase>pre-integration-test</phase>
+                                                <goals>
+                                                        <goal>prepare-agent</goal>
+                                                </goals>
+                                                <configuration>
+                                                        <destFile>${project.build.directory}/coverage-reports/jacoco-it.exec</destFile>
+                                                        <!-- <append>true</append> -->
+                                                </configuration>
+                                        </execution>
+                                        <execution>
+                                                <goals>
+                                                        <goal>merge</goal>
+                                                </goals>
+                                                <phase>post-integration-test</phase>
+                                                <configuration>
+                                                        <fileSets>
+                                                                <fileSet implementation="org.apache.maven.shared.model.fileset.FileSet">
+                                                                        <directory>${project.build.directory}/coverage-reports</directory>
+                                                                        <includes>
+                                                                                <include>*.exec</include>
+                                                                        </includes>
+                                                                </fileSet>
+                                                        </fileSets>
+                                                        <destFile>${project.build.directory}/jacoco-dev.exec</destFile>
+                                                </configuration>
+                                        </execution>
+                                </executions>
+</plugin>
   </plugins>
  </build>
   
