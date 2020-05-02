@@ -1,9 +1,9 @@
 <project>
   <modelVersion>4.0.0</modelVersion>
-  <groupId>com.bogotobogo</groupId>
-  <artifactId>bogotobogo_JenkinsOnEC2</artifactId>
+  <groupId>in.javahome</groupId>
+  <artifactId>JenkinsOnEC2</artifactId>
   <packaging>jar</packaging>
-  <version>212.0-SNAPSHOT</version>
+  <version>10.0-SNAPSHOT</version>
 
   <properties>
     <maven.compiler.source>7</maven.compiler.source>
