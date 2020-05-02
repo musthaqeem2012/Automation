@@ -16,7 +16,10 @@
                 <!-- Enable language to disable other language analysis -->
                 <sonar.language>java</sonar.language>
                 <sonar.exclusions>src/main/resources/**</sonar.exclusions>
-	  
+<sonar.core.codeCoveragePlugin>jacoco</sonar.core.codeCoveragePlugin>
+    <!-- Default Sonar configuration -->
+    <sonar.coverage.jacoco.xmlReportPaths>${project.reporting.outputDirectory}/jacoco-ut/jacoco.xml</sonar.coverage.jacoco.xmlReportPaths>
+ 	  
   </properties>
 
   <dependencies>
@@ -29,6 +32,42 @@
 
  <build>
   <plugins>
+	  
+<plugin>
+    <groupId>org.apache.maven.plugins</groupId>
+    <artifactId>maven-surefire-plugin</artifactId>
+    <version>0.8.2</version>
+    <configuration>
+        <forkCount>1</forkCount>
+        <reuseForks>true</reuseForks>
+        <useSystemClassLoader>false</useSystemClassLoader>
+    </configuration>
+</plugin>
+	  <plugin>
+    <groupId>org.apache.maven.plugins</groupId>
+    <artifactId>maven-failsafe-plugin</artifactId>
+    <version>0.8.2</version>
+    <executions>
+      <execution>
+         <id>integration-tests</id>
+         <goals>
+           <goal>integration-test</goal>
+           <goal>verify</goal>
+         </goals>
+         <configuration>
+           <additionalClasspathElements>
+              <additionalClasspathElement>${project.build.directory}/classes</additionalClasspathElement>
+           </additionalClasspathElements>
+           <includes>
+             <include>**/*ItCase.java</include>
+           </includes>
+           <forkCount>1</forkCount>
+           <reuseForks>false</reuseForks>
+           <useSystemClassLoader>false</useSystemClassLoader>
+         </configuration>
+      </execution>
+    </executions>
+</plugin>
     <plugin>
                                 <groupId>org.jacoco</groupId>
                                 <artifactId>jacoco-maven-plugin</artifactId>
