@@ -52,6 +52,12 @@ pipeline {
             
 		     }
 	    
-        }	*/	        
+        }	*/
+	    stage('my stage')
+	    {
+		    steps{
+		    echo "You are in dev stage"
+		    }
+	    }
     }
 }
