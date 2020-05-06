@@ -48,7 +48,7 @@ pipeline {
              	    
                 sh "pwd"
 		
-                echo 'Deployed Successfully in prod'
+                echo 'Deployed Successfully in production'
             
 		     }
 	    
