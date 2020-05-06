@@ -18,7 +18,7 @@ pipeline {
                  git 'https://github.com/musthaqeem2012/simple-app.git'
                  
             }
-        }*/
+        }
        
 		
 	
@@ -52,6 +52,6 @@ pipeline {
             
 		     }
 	    
-        }		        
+        }	*/	        
     }
 }
