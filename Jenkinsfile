@@ -23,9 +23,9 @@ pipeline {
 		
 	
        stage('Deploy to Dev') {
-		when {
+		/*when {
                 branch 'development'
-           	 }		
+           	 }*/		
            	 steps {
 		     
                 echo 'Deploying....'
@@ -39,9 +39,9 @@ pipeline {
         }
 		
        stage('Deploy to Prod') {
-		when {
+		/*when {
                 branch 'production'
-           	 }		
+           	 }*/		
            	 steps {
 		     
                 echo 'Deploying....'
